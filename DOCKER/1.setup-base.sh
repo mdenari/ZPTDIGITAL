@@ -8,7 +8,7 @@
 ###################################
 
 # Insira o hostname usando este comando:
-hostnamectl set-hostname manager1
+hostnamectl set-hostname manager01
 
 # precisamos alterar esse arquivo tambem
 nano /etc/hosts
