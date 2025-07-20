@@ -27,13 +27,13 @@ services:
     # configura o volume do serviço do postgres
     volumes:
       # para salvar no volume do Docker
-      - postgres_data:/var/lib/postgresql/data
+      #- postgres_data:/var/lib/postgresql/data
       # Para salvar num volume externo anexado na VPS
-      # - /mnt/VOLUME/pasta:/var/lib/postgresql/data
+      - /mnt/dados/postgres:/var/lib/postgresql/data
     # configura as variáveis de ambiente do serviço do postgres
     environment:
       # Define a senha do usuario postgres
-      - POSTGRES_PASSWORD=SENHA
+      - POSTGRES_PASSWORD=senha ##coloque sua senha aqui
       # Fix para a versão 16.1 do postgres
       - POSTGRES_INITDB_ARGS="--auth-host=scram-sha-256"
     # define o modo de deploy do container
