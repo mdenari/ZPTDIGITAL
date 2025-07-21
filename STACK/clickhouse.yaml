@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  clickhouse:
+    image: clickhouse/clickhouse-server
+    ports:
+      - "8123:8123"   # HTTP interface do ClickHouse
+      - "9100:9000"   # Porta externa 9100 redireciona para a interna 9000 no container
+    networks:
+      - network_swarm_public
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.hostname == database01
+    environment:
+      CLICKHOUSE_PASSWORD: iu2QpKf7HqwWcd
+      CLICKHOUSE_USER: click_admin
+    volumes:
+      - /mnt/dados/clickhouse:/var/lib/clickhouse
+
+networks:
+  network_swarm_public:
+    external: true
