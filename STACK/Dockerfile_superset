@@ -1,0 +1,16 @@
+# Usa a imagem oficial do Apache Superset como base
+FROM apache/superset:latest
+
+# Instala as dependências Python necessárias
+# --no-cache-dir: evita que o pip armazene o cache de downloads, economizando espaço
+# clickhouse-sqlalchemy: o driver principal
+# "SQLAlchemy<2.0.0": Garante que a versão do SQLAlchemy seja anterior a 2.0.0,
+#                      resolvendo o erro "cannot import name 'eagerload'"
+# "Flask-SQLAlchemy<3.1.0": Garante compatibilidade com o Flask-SQLAlchemy
+RUN pip install --no-cache-dir \
+    clickhouse-sqlalchemy \
+    "SQLAlchemy<2.0.0" \
+    "Flask-SQLAlchemy<3.1.0"
+
+# O WORKDIR padrão e o CMD já estão na imagem base,
+# então não precisamos redefini-los a menos que queiramos mudar o comportamento padrão
